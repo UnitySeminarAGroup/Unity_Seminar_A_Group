@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootController : MonoBehaviour {
+public class FootController : MonoBehaviour
+{
+    void Start()
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    void Update()
+    {
+
+    }
 }

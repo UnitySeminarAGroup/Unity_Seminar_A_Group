@@ -2505,7 +2505,7 @@ MonoBehaviour:
   FootGripPosition: {x: 0, y: 0, z: 0}
   HandDevice: {fileID: 2075016944}
   FootDevice: {fileID: 0}
-  modelrend: {fileID: 0}
+  modelrend: {fileID: 1099301273}
 --- !u!54 &2075016938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2550,7 +2550,7 @@ MonoBehaviour:
   FootGripPosition: {x: 0, y: 0, z: 0}
   HandDevice: {fileID: 2075016943}
   FootDevice: {fileID: 0}
-  modelrend: {fileID: 0}
+  modelrend: {fileID: 2046491624}
 --- !u!54 &2075016941
 Rigidbody:
   m_ObjectHideFlags: 0

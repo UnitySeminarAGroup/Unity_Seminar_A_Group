@@ -10,19 +10,23 @@ public class UIController : MonoBehaviour {
 
     private float seconds;
     private float oldseconds;
+    public GameObject pointTest;
 
 	// Use this for initialization
 	void Start () {
         seconds = 120f;
         oldseconds = 120f;
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         // スコアを更新
-        // int score =;
-        // ScoreLabel.txt = "Score;" + score;
+      
+        int bscore;
+        bscore = pointTest.GetComponent<PointController>().score;
+        ScoreLabel.text = "Score:" + bscore;
 
 
         // 残り時間を更新
@@ -39,7 +43,8 @@ public class UIController : MonoBehaviour {
         }
         
         // 頭と両足の距離を更新
-        int 
+        // int 
 
 	}
+
 }

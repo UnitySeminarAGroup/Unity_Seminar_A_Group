@@ -38,13 +38,13 @@ public class PlayerController : MonoBehaviour
         Vector3 RightOffset = RightDevice.transform.position - RightDevice.GripPosition;
         Vector3 LeftOffset = RightDevice.transform.position - LeftDevice.GripPosition;
         Vector3 AveOffset = (RightOffset + LeftOffset) / 2;
-        rigidbody.position = rigidbody.position - AveOffset;
+        rigidbody.position =Vector3.Lerp(rigidbody.position,  rigidbody.position - AveOffset,0.1f);
     }
     void SingleGrip(HandController device)
     {
         rigidbody.useGravity = false;
         Vector3 offset = device.transform.position - device.GripPosition;
-        rigidbody.position = rigidbody.position - offset;
+        rigidbody.position =Vector3.Lerp(rigidbody.position,rigidbody.position - offset,0.1f);
     }
     void Fall()
     {

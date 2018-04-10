@@ -6,7 +6,7 @@ public class HandController : MonoBehaviour
 {
     public bool IsHandGripping, IsFootGripping;
     public Vector3 GripPosition, FootGripPosition;
-    bool IsTriggered, IsPadTouched;
+    public bool IsTriggered, IsPadTouched;
     [SerializeField] SteamVR_TrackedObject HandDevice, FootDevice;
     [SerializeField] Renderer modelrend;
     void Start()
@@ -15,8 +15,10 @@ public class HandController : MonoBehaviour
     }
     void Update()
     {
+        HandDevice = GetComponent<SteamVR_TrackedObject>();
         var device = SteamVR_Controller.Input((int)HandDevice.index);
-        IsTriggered = device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) || device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger);
+        IsTriggered = device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger);
+        Debug.Log("1:" + IsTriggered);
         IsPadTouched = device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress(SteamVR_Controller.ButtonMask.Touchpad);
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
@@ -24,10 +26,16 @@ public class HandController : MonoBehaviour
             IsHandGripping = false;
             modelrend.material.color = Color.white;
         }
+        Debug.Log("2:" + IsTriggered);
+
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
         {
             IsPadTouched = false;
             IsFootGripping = false;
+        }
+        if (IsTriggered)
+        {
+            modelrend.material.color = Color.blue;
         }
     }
     void OnTriggerStay(Collider collider)

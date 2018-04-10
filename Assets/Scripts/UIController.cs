@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
     public Text ScoreLabel;
+    public Text ScoreLabel1;
     public Text LimitTimeLabel;
+    public Text LimitTimeLabel1;
     public Text DistanceLabel;
 
     private float seconds;
@@ -27,7 +29,7 @@ public class UIController : MonoBehaviour {
         int bscore;
         bscore = pointTest.GetComponent<PointController>().score;
         ScoreLabel.text = "Score:" + bscore;
-
+        ScoreLabel1.text = "Score:" + bscore;
 
         // 残り時間を更新
         if (seconds >= 0f)
@@ -35,7 +37,8 @@ public class UIController : MonoBehaviour {
             seconds -= Time.deltaTime;
             if (seconds != oldseconds)
             {
-                LimitTimeLabel.text = "残り時間:" + Mathf.Ceil(seconds) + "秒";
+                LimitTimeLabel.text = "LimitTime : " + Mathf.Ceil(seconds) + "s";
+                LimitTimeLabel1.text = "LimitTime : " + Mathf.Ceil(seconds) + "s";
             }
             oldseconds = seconds;
         }else{

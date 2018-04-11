@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointController : MonoBehaviour
+public class PointControllerLH : MonoBehaviour
 {
-    public int score;
+    
+    public int scoreLH;
+    
 
     // Use this for initialization
     void Start()
     {
-        score = 0;
+        scoreLH = 0;
+        
     }
 
     // Update is called once per frame
@@ -22,13 +25,13 @@ public class PointController : MonoBehaviour
     {
         if (other.gameObject.tag == "Point5")
         {
-            score += 5;
+            scoreLH += 5;
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.tag == "Point10")
         {
-            score += 10;
+            scoreLH += 10;
             Destroy(other.gameObject);
         }
     }

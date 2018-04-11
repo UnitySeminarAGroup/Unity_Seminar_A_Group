@@ -9,26 +9,25 @@ public class HandController : MonoBehaviour
     public bool IsTriggered, IsPadTouched;
     [SerializeField] SteamVR_TrackedObject HandDevice, FootDevice;
     [SerializeField] Renderer modelrend;
-    void Start()
+    void Start ()
     {
-        HandDevice = GetComponent<SteamVR_TrackedObject>();
+        HandDevice = GetComponent<SteamVR_TrackedObject> ();
     }
-    void Update()
+    void Update ()
     {
-        HandDevice = GetComponent<SteamVR_TrackedObject>();
-        var device = SteamVR_Controller.Input((int)HandDevice.index);
-        IsTriggered = device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger);
-        Debug.Log("1:" + IsTriggered);
-        IsPadTouched = device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress(SteamVR_Controller.ButtonMask.Touchpad);
-        if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+        var device = SteamVR_Controller.Input ((int) HandDevice.index);
+        IsTriggered = device.GetPressDown (SteamVR_Controller.ButtonMask.Trigger);
+        Debug.Log ("1:" + IsTriggered);
+        IsPadTouched = device.GetPressDown (SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress (SteamVR_Controller.ButtonMask.Touchpad);
+        if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Trigger))
         {
             IsTriggered = false;
             IsHandGripping = false;
             modelrend.material.color = Color.white;
         }
-        Debug.Log("2:" + IsTriggered);
+        Debug.Log ("2:" + IsTriggered);
 
-        if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Touchpad))
         {
             IsPadTouched = false;
             IsFootGripping = false;
@@ -38,7 +37,7 @@ public class HandController : MonoBehaviour
             modelrend.material.color = Color.blue;
         }
     }
-    void OnTriggerStay(Collider collider)
+    void OnTriggerStay (Collider collider)
     {
         if (!IsHandGripping)
         {
@@ -57,5 +56,9 @@ public class HandController : MonoBehaviour
                 //FootGripPosition = FootDevice.transform.position;
             }
         }
+    }
+    public ReGrip ()
+    {
+        GripPosition = transform.position;
     }
 }

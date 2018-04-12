@@ -17,7 +17,6 @@ public class HandController : MonoBehaviour
     {
         var device = SteamVR_Controller.Input ((int) HandDevice.index);
         IsTriggered = device.GetPressDown (SteamVR_Controller.ButtonMask.Trigger);
-        Debug.Log ("1:" + IsTriggered);
         IsPadTouched = device.GetPressDown (SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress (SteamVR_Controller.ButtonMask.Touchpad);
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Trigger))
         {
@@ -25,7 +24,6 @@ public class HandController : MonoBehaviour
             IsHandGripping = false;
             modelrend.material.color = Color.white;
         }
-        Debug.Log ("2:" + IsTriggered);
 
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Touchpad))
         {
@@ -56,9 +54,5 @@ public class HandController : MonoBehaviour
                 //FootGripPosition = FootDevice.transform.position;
             }
         }
-    }
-    public ReGrip ()
-    {
-        GripPosition = transform.position;
     }
 }

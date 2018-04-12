@@ -35,6 +35,15 @@ public class HandController : MonoBehaviour
             modelrend.material.color = Color.blue;
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "AddPoint")
+        {
+            FindObjectOfType<UIController>().score++;
+        }
+    }
+
     void OnTriggerStay (Collider collider)
     {
         if (!IsHandGripping)

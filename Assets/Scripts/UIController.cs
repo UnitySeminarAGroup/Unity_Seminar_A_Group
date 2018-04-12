@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour {
     public Text LimitTimeLabel;
     public Text LimitTimeLabel1;
     public Text DistanceLabel;
-
+    public int score;
     private float seconds;
     private float oldseconds;
     public GameObject pointLH;

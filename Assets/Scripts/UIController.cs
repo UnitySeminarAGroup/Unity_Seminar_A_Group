@@ -14,11 +14,13 @@ public class UIController : MonoBehaviour {
     private float oldseconds;
     public GameObject pointLH;
     public GameObject pointRH;
+    
 
     // Use this for initialization
     void Start () {
         seconds = 120f;
         oldseconds = 120f;
+        score = 0;
 
     }
 	
@@ -27,14 +29,14 @@ public class UIController : MonoBehaviour {
 
         // スコアを更新
       
-        int AllScore;
+        /*int AllScore;
         int scoretestLH;
         int scoretestRH;
         scoretestLH = pointLH.GetComponent<PointControllerLH>().scoreLH;
         scoretestRH = pointRH.GetComponent<PointControllerRH>().scoreRH;
-        AllScore = scoretestLH + scoretestRH;
-        ScoreLabel.text = "Score:" + AllScore;
-        ScoreLabel1.text = "Score:" + AllScore;
+        AllScore = scoretestLH + scoretestRH;*/
+        ScoreLabel.text = "Score : " + score;
+        ScoreLabel1.text = "Score : " + score;
 
         // 残り時間を更新
         if (seconds >= 0f)

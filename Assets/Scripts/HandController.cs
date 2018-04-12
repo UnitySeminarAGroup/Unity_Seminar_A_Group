@@ -38,9 +38,11 @@ public class HandController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "AddPoint")
+        if(other.gameObject.tag == "AddPoint")
         {
-            FindObjectOfType<UIController>().score++;
+            int p = other.GetComponent<PointController>().ScorePoint;
+            FindObjectOfType<UIController>().score += p;
+            Destroy(other.gameObject);
         }
     }
 

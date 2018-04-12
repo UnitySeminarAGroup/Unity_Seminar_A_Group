@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54489210106352222}
   m_Layer: 0
   m_Name: Point10
-  m_TagString: Point10
+  m_TagString: AddPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

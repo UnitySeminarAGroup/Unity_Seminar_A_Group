@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Point5
-  - Point10
+  - GripPoint
+  - AddPoint
   layers:
   - Default
   - TransparentFX

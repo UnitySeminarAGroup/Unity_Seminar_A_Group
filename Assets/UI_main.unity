@@ -189,6 +189,10 @@ Prefab:
       propertyPath: m_Name
       value: Point10 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1493643990652364, guid: d730cb9fb7fae4544a6816bb581b5c31, type: 2}
+      propertyPath: m_TagString
+      value: AddPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d730cb9fb7fae4544a6816bb581b5c31, type: 2}
   m_IsPrefabParent: 0
@@ -1807,6 +1811,10 @@ Prefab:
       propertyPath: m_Name
       value: Point5 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1771818291817172, guid: 21261e39c1a0af74ab6942db6903f63e, type: 2}
+      propertyPath: m_TagString
+      value: AddPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21261e39c1a0af74ab6942db6903f63e, type: 2}
   m_IsPrefabParent: 0
@@ -2170,6 +2178,10 @@ Prefab:
     - target: {fileID: 4625151094145054, guid: d730cb9fb7fae4544a6816bb581b5c31, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493643990652364, guid: d730cb9fb7fae4544a6816bb581b5c31, type: 2}
+      propertyPath: m_TagString
+      value: AddPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d730cb9fb7fae4544a6816bb581b5c31, type: 2}
@@ -2586,6 +2598,10 @@ Prefab:
     - target: {fileID: 4518967849145522, guid: 21261e39c1a0af74ab6942db6903f63e, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771818291817172, guid: 21261e39c1a0af74ab6942db6903f63e, type: 2}
+      propertyPath: m_TagString
+      value: AddPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21261e39c1a0af74ab6942db6903f63e, type: 2}

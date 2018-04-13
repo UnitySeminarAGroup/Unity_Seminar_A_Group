@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rigidbody;
+    [SerializeField] Transform HMDTransform;
     [SerializeField] HandController RightDevice, LeftDevice;
+    [SerializeField] float WalkMinLimit,WalkSpeed;
     void Start ()
     {
         rigidbody = GetComponent<Rigidbody> ();
@@ -31,6 +33,10 @@ public class PlayerController : MonoBehaviour
         {
             Fall ();
         }
+        if(!(RightDevice.IsHandGripping || LeftDevice.IsHandGripping) && (RightDevice.IsWalking && LeftDevice.IsWalking))
+        {
+            Walk();
+        }
     }
     void DowbleGrip ()
     {
@@ -49,5 +55,15 @@ public class PlayerController : MonoBehaviour
     void Fall ()
     {
         rigidbody.useGravity = true;
+    }
+    void Walk()
+    {
+        float RVeloY = RightDevice.transform.InverseTransformDirection(RightDevice.ControllerVelocity).y;
+        float LVeloY = LeftDevice.transform.InverseTransformDirection(LeftDevice.ControllerVelocity).y;
+        float AveVeloY = (Mathf.Abs(RVeloY) + Mathf.Abs(LVeloY))/2;
+        if(Mathf.Abs(RVeloY) > WalkMinLimit && Mathf.Abs(LVeloY) > WalkMinLimit && (RVeloY*LVeloY)<0)
+        {
+            rb.velocity = HMDTransform.forward * WalkSpeed * AveVeloY;
+        }
     }
 }

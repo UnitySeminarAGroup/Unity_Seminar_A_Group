@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    public bool IsHandGripping, IsFootGripping;
-    public Vector3 GripPosition, FootGripPosition;
+    public bool IsHandGripping, IsFootGripping,IsWalking;
+    public Vector3 GripPosition, FootGripPosition,ControllerVelocity;
     public bool IsTriggered, IsPadTouched;
     [SerializeField] SteamVR_TrackedObject HandDevice, FootDevice;
     [SerializeField] Renderer modelrend;
+    Rigidbody rb;
     void Start ()
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
+        HandDevice.GetComponent<SteamVR_RenderModel>().enabled = false;
+        rb = GetComponent<Rigidbody>();
     }
     void Update ()
     {
         var device = SteamVR_Controller.Input ((int) HandDevice.index);
         IsTriggered = device.GetPressDown (SteamVR_Controller.ButtonMask.Trigger);
+        
         IsPadTouched = device.GetPressDown (SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress (SteamVR_Controller.ButtonMask.Touchpad);
+        ControllerVelocity = rb.velocity;
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Trigger))
         {
             IsTriggered = false;
             IsHandGripping = false;
             modelrend.material.color = Color.white;
         }
-
+        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            Ray ray = new Ray(transform.position,transform.forward);
+            RaycastHit hit;
+            if(Physics.Raycast(ray,out hit))
+            {
+                IsWalking = true;
+            }
+        }
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Touchpad))
         {
             IsPadTouched = false;

@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         float AveVeloY = (Mathf.Abs(RVeloY) + Mathf.Abs(LVeloY))/2;
         if(Mathf.Abs(RVeloY) > WalkMinLimit && Mathf.Abs(LVeloY) > WalkMinLimit && (RVeloY*LVeloY)<0)
         {
-            rb.velocity = HMDTransform.forward * WalkSpeed * AveVeloY;
+            rigidbody.velocity = HMDTransform.forward * WalkSpeed * AveVeloY;
         }
     }
 }

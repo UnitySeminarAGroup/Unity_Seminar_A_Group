@@ -15,7 +15,6 @@ public class HandController : MonoBehaviour
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
         rb = GetComponent<Rigidbody> ();
-        animator = GetComponent<Animator>();
     }
     void Update ()
     {
@@ -47,6 +46,11 @@ public class HandController : MonoBehaviour
         if (IsTriggered)
         {
             modelrend.material.color = Color.blue;
+            animator.SetBool("Trigger", true);
+        }
+        if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+        {
+            animator.SetBool("Trigger", false);
         }
     }
 

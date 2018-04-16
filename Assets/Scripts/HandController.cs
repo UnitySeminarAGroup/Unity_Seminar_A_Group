@@ -59,7 +59,7 @@ public class HandController : MonoBehaviour
             int p = other.GetComponent<PointController> ().ScorePoint;
             FindObjectOfType<UIController> ().score += p;
             Destroy (other.gameObject);
-            audioSource.PlayOneShot(audioSource.clip);
+            audioSource.Play();
         }
     }
 

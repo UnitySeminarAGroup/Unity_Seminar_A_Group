@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    public bool IsHandGripping, IsFootGripping,IsWalking;
-    public Vector3 GripPosition, FootGripPosition,ControllerVelocity;
+    public bool IsHandGripping, IsFootGripping, IsWalking;
+    public Vector3 GripPosition, FootGripPosition, ControllerVelocity;
     public bool IsTriggered, IsPadTouched;
     [SerializeField] SteamVR_TrackedObject HandDevice, FootDevice;
     [SerializeField] Renderer modelrend;
@@ -13,7 +13,7 @@ public class HandController : MonoBehaviour
     void Start ()
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody> ();
     }
     void Update ()
     {
@@ -27,17 +27,12 @@ public class HandController : MonoBehaviour
             IsHandGripping = false;
             modelrend.material.color = Color.white;
         }
-        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        if (device.GetPressDown (SteamVR_Controller.ButtonMask.Grip))
         {
-            Ray ray = new Ray(transform.position,transform.forward);
-            RaycastHit hit;
-            if(Physics.Raycast(ray,out hit))
-            {
-                modelrend.material.color = Color.green;
-                IsWalking = true;
-            }
+            modelrend.material.color = Color.green;
+            IsWalking = true;
         }
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+        if (device.GetPressUp (SteamVR_Controller.ButtonMask.Grip))
         {
             IsWalking = false;
             modelrend.material.color = Color.white;
@@ -53,13 +48,13 @@ public class HandController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter (Collider other)
     {
-        if(other.gameObject.tag == "AddPoint")
+        if (other.gameObject.tag == "AddPoint")
         {
-            int p = other.GetComponent<PointController>().ScorePoint;
-            FindObjectOfType<UIController>().score += p;
-            Destroy(other.gameObject);
+            int p = other.GetComponent<PointController> ().ScorePoint;
+            FindObjectOfType<UIController> ().score += p;
+            Destroy (other.gameObject);
         }
     }
 

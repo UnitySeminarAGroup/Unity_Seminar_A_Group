@@ -26,14 +26,15 @@ public class HandController : MonoBehaviour
         {
             IsTriggered = false;
             IsHandGripping = false;
+            animator.SetBool("Trigger", false);
             modelrend.material.color = Color.white;
         }
-        if (device.GetPressDown (SteamVR_Controller.ButtonMask.Grip))
+        if (!IsWalking &&device.GetPressDown (SteamVR_Controller.ButtonMask.Grip))
         {
             modelrend.material.color = Color.green;
             IsWalking = true;
         }
-        if (device.GetPressUp (SteamVR_Controller.ButtonMask.Grip))
+        if (IsWalking &&device.GetPressUp (SteamVR_Controller.ButtonMask.Grip))
         {
             IsWalking = false;
             modelrend.material.color = Color.white;
@@ -47,10 +48,6 @@ public class HandController : MonoBehaviour
         {
             modelrend.material.color = Color.blue;
             animator.SetBool("Trigger", true);
-        }
-        if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            animator.SetBool("Trigger", false);
         }
     }
 

@@ -7,15 +7,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody rigidbody;
     [SerializeField] Transform HMDTransform;
     [SerializeField] HandController RightDevice, LeftDevice;
-    [SerializeField] float WalkMinLimit, WalkSpeed;
+    [SerializeField] float WalkSpeed;
+    Vector3 RightPosCash, LeftPosCash;
     void Start ()
     {
         rigidbody = GetComponent<Rigidbody> ();
-        var renders = FindObjectsOfType<SteamVR_RenderModel>();
-        foreach(SteamVR_RenderModel r in renders)
-        {
-            r.enabled = false;
-        }
+        RightPosCash = RightDevice.transform.position;
+        LeftPosCash = LeftDevice.transform.position;
     }
     void Update ()
     {
@@ -37,10 +35,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             Fall ();
-        }
-        if (!(RightDevice.IsHandGripping || LeftDevice.IsHandGripping) && (RightDevice.IsWalking && LeftDevice.IsWalking))
-        {
-            Walk ();
+            if (RightDevice.IsWalking && LeftDevice.IsWalking)
+            {
+                Walk();
+            }
         }
     }
     void DowbleGrip ()
@@ -63,7 +61,14 @@ public class PlayerController : MonoBehaviour
     }
     void Walk ()
     {
-        float AveVeloY = (RightDevice.ControllerVelocity.magnitude + LeftDevice.ControllerVelocity.magnitude) / 2;
+        float DifPosRight = (RightPosCash - RightDevice.transform.position).magnitude;
+        float DifPosLeft = (LeftPosCash - LeftDevice.transform.position).magnitude;
+        float AveVeloY = Mathf.Clamp((DifPosRight + DifPosLeft) / (2* Time.deltaTime),0,3);
+        //float AveVeloY = (RightDevice.ControllerVelocity.magnitude + LeftDevice.ControllerVelocity.magnitude) / 2;
+        Debug.Log("Walking : " + AveVeloY);
+        Vector3 forward = new Vector3(HMDTransform.forward.x, 0, HMDTransform.forward.z).normalized;
         rigidbody.velocity = HMDTransform.forward * WalkSpeed * AveVeloY;
+        RightPosCash = RightDevice.transform.position;
+        LeftPosCash = LeftDevice.transform.position;
     }
 }

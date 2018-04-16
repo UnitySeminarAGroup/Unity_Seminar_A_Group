@@ -10,6 +10,7 @@ public class HandController : MonoBehaviour
     [SerializeField] SteamVR_TrackedObject HandDevice, FootDevice;
     [SerializeField] Renderer modelrend;
     [SerializeField] Animator animator;
+    [SerializeField] AudioSource audioSource;
     Rigidbody rb;
     void Start ()
     {
@@ -58,6 +59,7 @@ public class HandController : MonoBehaviour
             int p = other.GetComponent<PointController> ().ScorePoint;
             FindObjectOfType<UIController> ().score += p;
             Destroy (other.gameObject);
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 

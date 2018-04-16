@@ -44,8 +44,8 @@ public class UIController : MonoBehaviour {
             seconds -= Time.deltaTime;
             if (seconds != oldseconds)
             {
-                LimitTimeLabel.text = "LimitTime : " + Mathf.Ceil(seconds) + "s";
-                LimitTimeLabel1.text = "LimitTime : " + Mathf.Ceil(seconds) + "s";
+                LimitTimeLabel.text = "Limit : " + Mathf.Ceil(seconds) + "s";
+                LimitTimeLabel1.text = "Limit : " + Mathf.Ceil(seconds) + "s";
             }
             oldseconds = seconds;
         }else{

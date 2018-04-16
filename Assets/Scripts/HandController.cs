@@ -9,11 +9,13 @@ public class HandController : MonoBehaviour
     public bool IsTriggered, IsPadTouched;
     [SerializeField] SteamVR_TrackedObject HandDevice, FootDevice;
     [SerializeField] Renderer modelrend;
+    [SerializeField] Animator animator;
     Rigidbody rb;
     void Start ()
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
         rb = GetComponent<Rigidbody> ();
+        animator = GetComponent<Animator>();
     }
     void Update ()
     {
@@ -67,6 +69,7 @@ public class HandController : MonoBehaviour
                 IsHandGripping = true;
                 GripPosition = transform.position;
                 modelrend.material.color = Color.red;
+                animator.SetBool("Trigger",true);
             }
         }
         if (!IsFootGripping)

@@ -12,8 +12,8 @@ public class UIController : MonoBehaviour {
     public int score;
     private float seconds;
     private float oldseconds;
-    public GameObject pointLH;
-    public GameObject pointRH;
+    //public GameObject pointLH;
+    //public GameObject pointRH;
     
 
     // Use this for initialization

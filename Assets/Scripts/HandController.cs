@@ -13,14 +13,12 @@ public class HandController : MonoBehaviour
     void Start ()
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
-        HandDevice.GetComponent<SteamVR_RenderModel>().enabled = false;
         rb = GetComponent<Rigidbody>();
     }
     void Update ()
     {
         var device = SteamVR_Controller.Input ((int) HandDevice.index);
         IsTriggered = device.GetPressDown (SteamVR_Controller.ButtonMask.Trigger);
-        
         IsPadTouched = device.GetPressDown (SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress (SteamVR_Controller.ButtonMask.Touchpad);
         ControllerVelocity = rb.velocity;
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Trigger))
@@ -35,8 +33,14 @@ public class HandController : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray,out hit))
             {
+                modelrend.material.color = Color.green;
                 IsWalking = true;
             }
+        }
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+        {
+            IsWalking = false;
+            modelrend.material.color = Color.white;
         }
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Touchpad))
         {

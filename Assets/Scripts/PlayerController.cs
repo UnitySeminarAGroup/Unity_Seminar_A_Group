@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     void Start ()
     {
         rigidbody = GetComponent<Rigidbody> ();
+        var renders = FindObjectsOfType<SteamVR_RenderModel>();
+        foreach(SteamVR_RenderModel r in renders)
+        {
+            r.enabled = false;
+        }
     }
     void Update ()
     {

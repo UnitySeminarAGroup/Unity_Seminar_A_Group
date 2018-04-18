@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class FootController : MonoBehaviour
 {
-    void Start()
+    [SerializeField] AudioSource audioSource;
+    private void Start()
     {
-
+        if(audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
-
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.tag == "AddPoint")
+        {
+            int p = other.GetComponent<PointController>().ScorePoint;
+            FindObjectOfType<UIController>().score += p;
+            Destroy(other.gameObject);
+            audioSource.Play();
+        }
     }
 }

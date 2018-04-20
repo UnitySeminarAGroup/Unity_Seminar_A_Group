@@ -10,10 +10,9 @@ public class UIController : MonoBehaviour {
     public Text LimitTimeLabel1;
     public Text DistanceLabel;
     public int score;
-    private float seconds;
+    public float seconds;
     private float oldseconds;
-    //public GameObject pointLH;
-    //public GameObject pointRH;
+    
     
 
     // Use this for initialization
@@ -29,12 +28,6 @@ public class UIController : MonoBehaviour {
 
         // スコアを更新
       
-        /*int AllScore;
-        int scoretestLH;
-        int scoretestRH;
-        scoretestLH = pointLH.GetComponent<PointControllerLH>().scoreLH;
-        scoretestRH = pointRH.GetComponent<PointControllerRH>().scoreRH;
-        AllScore = scoretestLH + scoretestRH;*/
         ScoreLabel.text = "Score : " + score;
         ScoreLabel1.text = "Score : " + score;
 
@@ -52,8 +45,6 @@ public class UIController : MonoBehaviour {
             seconds = 0f;
         }
         
-        // 頭と両足の距離を更新
-        // int 
 
 	}
 

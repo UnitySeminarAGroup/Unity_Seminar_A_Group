@@ -50,6 +50,14 @@ public class HandController : MonoBehaviour
             modelrend.material.color = Color.blue;
             animator.SetBool("Trigger", true);
         }
+        if (IsPadTouched)
+        {
+            Time.timeScale = 10;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     void OnTriggerEnter (Collider other)

@@ -17,6 +17,7 @@ public class LimitTimeManager : MonoBehaviour
 
     void Update()
     {
+        LimitTime = ui.seconds;
         if (LimitTime < 0.01f)
         {
             StartCoroutine(this.DelayMethod(DelayTime, () =>

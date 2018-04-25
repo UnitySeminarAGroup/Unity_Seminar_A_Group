@@ -12,6 +12,7 @@ public class HandController : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSource;
     Rigidbody rb;
+    float GripTimer;
     void Start ()
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
@@ -25,17 +26,14 @@ public class HandController : MonoBehaviour
         ControllerVelocity = rb.velocity;
         if (device.GetTouchUp (SteamVR_Controller.ButtonMask.Trigger))
         {
-            IsTriggered = false;
-            IsHandGripping = false;
-            animator.SetBool("Trigger", false);
-            modelrend.material.color = Color.white;
+            HandRelease (0);
         }
-        if (!IsWalking &&device.GetPressDown (SteamVR_Controller.ButtonMask.Grip))
+        if (!IsWalking && device.GetPressDown (SteamVR_Controller.ButtonMask.Grip))
         {
             modelrend.material.color = Color.green;
             IsWalking = true;
         }
-        if (IsWalking &&device.GetPressUp (SteamVR_Controller.ButtonMask.Grip))
+        if (IsWalking && device.GetPressUp (SteamVR_Controller.ButtonMask.Grip))
         {
             IsWalking = false;
             modelrend.material.color = Color.white;
@@ -48,7 +46,7 @@ public class HandController : MonoBehaviour
         if (IsTriggered)
         {
             modelrend.material.color = Color.blue;
-            animator.SetBool("Trigger", true);
+            animator.SetBool ("Trigger", true);
         }
         if (IsPadTouched)
         {
@@ -57,6 +55,14 @@ public class HandController : MonoBehaviour
         else
         {
             Time.timeScale = 1;
+        }
+        if (GripTimer > 0)
+        {
+            GripTimer -= Time.deltaTime;
+        }
+        else
+        {
+            GripTimer = 0;
         }
     }
 
@@ -67,7 +73,7 @@ public class HandController : MonoBehaviour
             int p = other.GetComponent<PointController> ().ScorePoint;
             FindObjectOfType<UIController> ().score += p;
             Destroy (other.gameObject);
-            audioSource.Play();
+            audioSource.Play ();
         }
     }
 
@@ -80,7 +86,7 @@ public class HandController : MonoBehaviour
                 IsHandGripping = true;
                 GripPosition = transform.position;
                 modelrend.material.color = Color.red;
-                animator.SetBool("Trigger",true);
+                animator.SetBool ("Trigger", true);
             }
         }
         if (!IsFootGripping)
@@ -91,5 +97,13 @@ public class HandController : MonoBehaviour
                 //FootGripPosition = FootDevice.transform.position;
             }
         }
+    }
+    public void HandRelease (float GripTime)
+    {
+        IsTriggered = false;
+        IsHandGripping = false;
+        GripTimer = GripTime;
+        animator.SetBool ("Trigger", false);
+        modelrend.material.color = Color.white;
     }
 }

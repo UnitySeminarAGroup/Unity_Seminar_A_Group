@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
         float DifPosRight = (RightPosCash - RightDevice.transform.position).magnitude;
         float DifPosLeft = (LeftPosCash - LeftDevice.transform.position).magnitude;
         float AveVeloY = Mathf.Clamp ((DifPosRight + DifPosLeft) / (2 * Time.deltaTime), 0, 3);
-        //float AveVeloY = (RightDevice.ControllerVelocity.magnitude + LeftDevice.ControllerVelocity.magnitude) / 2;
         Debug.Log ("Walking : " + AveVeloY);
         Vector3 forward = new Vector3 (HMDTransform.forward.x, 0, HMDTransform.forward.z).normalized;
         rigidbody.velocity = forward * WalkSpeed * AveVeloY;

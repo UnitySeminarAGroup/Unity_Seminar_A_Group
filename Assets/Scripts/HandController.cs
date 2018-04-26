@@ -59,10 +59,12 @@ public class HandController : MonoBehaviour
         if (GripTimer > 0)
         {
             GripTimer -= Time.deltaTime;
+            modelrend.material.color += new Color(0.01f, 0.01f, 0.01f, 0);
         }
         else
         {
             GripTimer = 0;
+            modelrend.material.color = Color.white;
         }
     }
 
@@ -81,7 +83,7 @@ public class HandController : MonoBehaviour
     {
         if (!IsHandGripping)
         {
-            if (IsTriggered && collider.tag == "GripPoint")
+            if (IsTriggered && collider.tag == "GripPoint" && GripTimer <= 0)
             {
                 IsHandGripping = true;
                 GripPosition = transform.position;
@@ -104,6 +106,6 @@ public class HandController : MonoBehaviour
         IsHandGripping = false;
         GripTimer = GripTime;
         animator.SetBool ("Trigger", false);
-        modelrend.material.color = Color.white;
+        modelrend.material.color = Color.black;
     }
 }

@@ -9,9 +9,8 @@ public class HighScoreManager : MonoBehaviour {
     int i;
     int new_score;
 
-    // ゴールに触れた際に新たにスコアを保存する
-
-    void OnTriggerEnter(Collider other)
+    // 新たにスコアを保存する
+    public void saveRanking()
     {
         int new_score = GetComponent<UIController>().score;
         
@@ -26,5 +25,6 @@ public class HighScoreManager : MonoBehaviour {
             }
         }
         PlayerPrefsX.SetIntArray("ranking", ranking);
+        
     }
 }

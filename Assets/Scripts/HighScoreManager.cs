@@ -9,10 +9,19 @@ public class HighScoreManager : MonoBehaviour {
     int i;
     int new_score;
 
+    void Awake()
+    {
+        ranking = PlayerPrefsX.GetIntArray(RANKING_PREF_KEY);
+        foreach(int i in ranking)
+        {
+            Debug.Log(i);
+        }
+    }
+
     // ゴールに触れた際に新たにスコアを保存する
     void OnTriggerEnter(Collider other)
     {
-        int new_score = GetComponent<UIController>().score;
+        int new_score = FindObjectOfType<UIController>().score;
         
         int _tmp = 0;
         for (i = 0; i < ranking.Length; i++)

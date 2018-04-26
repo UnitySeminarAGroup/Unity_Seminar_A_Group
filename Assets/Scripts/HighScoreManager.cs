@@ -25,6 +25,7 @@ public class HighScoreManager : MonoBehaviour {
             }
         }
         PlayerPrefsX.SetIntArray("ranking", ranking);
+        Debug.Log(PlayerPrefsX.GetIntArray("ranking")[0]);
         
     }
 }

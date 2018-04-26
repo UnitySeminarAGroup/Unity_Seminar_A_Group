@@ -9,8 +9,8 @@ public class HighScoreManager : MonoBehaviour {
     int i;
     int new_score;
 
-    // 新たにスコアを保存する
-    public void saveRanking()
+    // ゴールに触れた際に新たにスコアを保存する
+    void OnTriggerEnter(Collider other)
     {
         int new_score = GetComponent<UIController>().score;
         

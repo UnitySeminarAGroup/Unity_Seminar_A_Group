@@ -40,6 +40,14 @@ public class PlayerController : MonoBehaviour
                 Walk ();
             }
         }
+        if (Input.GetAxis("Jump") > 0)
+        {
+            Time.timeScale = 10;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
     void DowbleGrip ()
     {

@@ -9,14 +9,17 @@ public class UIController : MonoBehaviour {
     public Text DistanceLabel;
     public int score;
     public float seconds;
+    public float settingSeconds;
     private float oldseconds;
+    public AudioSource countDown;
+    public AudioSource timeUp;
     
     
 
     // Use this for initialization
     void Start () {
-        seconds = 120f;
-        oldseconds = 120f;
+        seconds = settingSeconds;
+        oldseconds = settingSeconds;
         score = 0;
 
     }
@@ -34,14 +37,24 @@ public class UIController : MonoBehaviour {
             seconds -= Time.deltaTime;
             if (seconds != oldseconds)
             {
-                LimitTimeLabel.text = "Limit : " + Mathf.Ceil(seconds) + "s";
+                LimitTimeLabel.text = "Limit : " + Mathf.Floor(seconds) + "s";
             }
             oldseconds = seconds;
+            if (5f < seconds && seconds < 11f)
+            {
+                if(!countDown.isPlaying){
+                countDown.Play();
+
+                }
+            }else if(seconds < 1f){
+                if(!timeUp.isPlaying){
+                    timeUp.Play();
+                }
+            }
         }else{
             seconds = 0f;
         }
         
-
 	}
 
 }

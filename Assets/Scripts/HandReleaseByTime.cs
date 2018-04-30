@@ -21,12 +21,12 @@ public class HandReleaseByTime : MonoBehaviour
         {
             if (!HasGripped)
             {
-                Timer = ReleaseTime;
+                Timer = 0;
                 HasGripped = true;
             }
-            Timer -= Time.deltaTime;
+            Timer += Time.deltaTime;
             ModelTransform.localPosition = ModelLocalPosition + (new Vector3 (Random.value, Random.value, Random.value).normalized * ShakeSize * TimeCurve.Evaluate (Timer));
-            if (Timer < 0)
+            if (Timer > ReleaseTime)
             {
                 handcontroller.HandRelease (ResurrectionTime);
                 HasGripped = false;

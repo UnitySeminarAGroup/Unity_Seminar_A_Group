@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class HandReleaseByTime : MonoBehaviour
 {
-	[SerializeField] HandController handcontroller;
-    [SerializeField] float ReleaseTime,ResurrectionTime;
+    [SerializeField] HandController handcontroller;
+    [SerializeField] float ReleaseTime, ResurrectionTime, ShakeSize;
+    [SerializeField] Transform ModelTransform;
+    [SerializeField] AnimationCurve TimeCurve;
     float Timer;
     bool HasGripped;
-	void Update ()
-	{
+    Vector3 ModelLocalPosition;
+    void Start ()
+    {
+        ModelLocalPosition = ModelTransform.localPosition;
+    }
+    void Update ()
+    {
         if (handcontroller.IsHandGripping)
         {
             if (!HasGripped)
@@ -18,9 +25,10 @@ public class HandReleaseByTime : MonoBehaviour
                 HasGripped = true;
             }
             Timer -= Time.deltaTime;
+            ModelTransform.localPosition = ModelLocalPosition + (new Vector3 (Random.value, Random.value, Random.value).normalized * ShakeSize * TimeCurve.Evaluate (Timer));
             if (Timer < 0)
             {
-                handcontroller.HandRelease(ResurrectionTime);
+                handcontroller.HandRelease (ResurrectionTime);
                 HasGripped = false;
             }
         }
@@ -28,5 +36,5 @@ public class HandReleaseByTime : MonoBehaviour
         {
             HasGripped = false;
         }
-	}
+    }
 }

@@ -59,9 +59,9 @@ public class HandController : MonoBehaviour
         if (GripTimer > 0)
         {
             GripTimer -= Time.deltaTime;
-            modelrend.material.color += new Color(0.01f, 0.01f, 0.01f, 0);
+            modelrend.material.color += new Color (0.01f, 0.01f, 0.01f, 0);
         }
-        else if(!IsHandGripping)
+        else if (!IsHandGripping)
         {
             GripTimer = 0;
             modelrend.material.color = Color.white;

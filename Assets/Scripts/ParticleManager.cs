@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleManager : MonoBehaviour {
+public class ParticleManager : MonoBehaviour
+{
 	public GameObject effectPrefab;
 	public Vector3 effectRotation;
 
-	void OnDisable()
+	void OnDisable ()
 	{
-		if(!effectPrefab)
+		if (!effectPrefab)
 		{
-			Instantiate(
+			Instantiate (
 				effectPrefab,
 				this.transform.position,
-				Quaternion.Euler(effectRotation)
+				Quaternion.Euler (effectRotation)
 			);
 		}
 	}

@@ -13,14 +13,15 @@ public class HandController : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     Rigidbody rb;
     float GripTimer;
+    SteamVR_Controller.Device device;
     void Start ()
     {
         HandDevice = GetComponent<SteamVR_TrackedObject> ();
         rb = GetComponent<Rigidbody> ();
+        device = SteamVR_Controller.Input ((int) HandDevice.index);
     }
     void Update ()
     {
-        var device = SteamVR_Controller.Input ((int) HandDevice.index);
         IsTriggered = device.GetPressDown (SteamVR_Controller.ButtonMask.Trigger);
         IsPadTouched = device.GetPressDown (SteamVR_Controller.ButtonMask.Touchpad) || device.GetPress (SteamVR_Controller.ButtonMask.Touchpad);
         ControllerVelocity = rb.velocity;
@@ -107,5 +108,9 @@ public class HandController : MonoBehaviour
         GripTimer = GripTime;
         animator.SetBool ("Trigger", false);
         modelrend.material.color = Color.black;
+    }
+    public void HandShake (ushort ShakePower)
+    {
+        device.TriggerHapticPulse (ShakePower);
     }
 }

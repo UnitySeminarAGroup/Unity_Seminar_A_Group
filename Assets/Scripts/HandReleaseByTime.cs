@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandReleaseByTime : MonoBehaviour
 {
     [SerializeField] HandController handcontroller;
-    [SerializeField] float ReleaseTime, ResurrectionTime, ShakeSize;
+    [SerializeField] float ReleaseTime, ResurrectionTime, ShakeSize, ShakePower;
     [SerializeField] Transform ModelTransform;
     [SerializeField] AnimationCurve TimeCurve;
     float Timer;
@@ -26,6 +26,10 @@ public class HandReleaseByTime : MonoBehaviour
             }
             Timer += Time.deltaTime;
             ModelTransform.localPosition = ModelLocalPosition + (new Vector3 (Random.value, Random.value, Random.value).normalized * ShakeSize * TimeCurve.Evaluate (Timer));
+            if (TimeCurve.Evaluate (Timer) > 0)
+            {
+                handcontroller.HandShake ((ushort) (TimeCurve.Evaluate (Timer) * ShakePower));
+            }
             if (Timer > ReleaseTime)
             {
                 handcontroller.HandRelease (ResurrectionTime);

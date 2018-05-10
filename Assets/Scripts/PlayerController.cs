@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
     }
     void Fall ()
     {
+        Vector3 velo = PlayerRigidbody.velocity;
         PlayerRigidbody.useGravity = true;
+        PlayerRigidbody.velocity = velo;
     }
     void Walk ()
     {

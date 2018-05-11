@@ -7,15 +7,17 @@ public class ParticleManager : MonoBehaviour
     public GameObject effectPrefab;
     public Vector3 effectRotation;
 
-    void OnTriggerEnter (Collider other)
+    public void InitParticle ()
     {
-        if (!effectPrefab)
+        if (effectPrefab)
         {
-            Instantiate(
+            GameObject obj =  Instantiate(
                 effectPrefab,
                 this.transform.position,
                 Quaternion.Euler(effectRotation)
             );
+            Debug.Log(obj.transform.parent);
+            obj.transform.parent = null;
         }
     }
 }

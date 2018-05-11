@@ -12,10 +12,6 @@ public class HighScoreManager : MonoBehaviour {
     void Awake()
     {
         ranking = PlayerPrefsX.GetIntArray(RANKING_PREF_KEY);
-        foreach(int i in ranking)
-        {
-            Debug.Log(i);
-        }
     }
 
     // ゴールに触れた際に新たにスコアを保存する

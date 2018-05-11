@@ -15,6 +15,7 @@ public class AutoDestroyEffect : MonoBehaviour {
 		if(!pointParticle.isPlaying)
 		{
 			Destroy(gameObject);
+            Debug.Log("Auto Destroyed");
 		}
 	}
 }

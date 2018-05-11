@@ -10,10 +10,6 @@ public class ScoreBoard : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         recentRanking = GetComponent<HighScoreManager>().ranking;
-        foreach (int i in recentRanking)
-        {
-            Debug.Log(i);
-        }
     }
 	
 	// Update is called once per frame

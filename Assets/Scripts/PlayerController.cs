@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         Vector3 LeftOffset = LeftDevice.transform.position - LeftDevice.GripPosition;
         Vector3 AveOffset = (RightOffset + LeftOffset) / 2;
         Vector3 Target = PlayerRigidbody.position - AveOffset;
-        Vector3 desiredVelocity = Vector3.Lerp (PlayerRigidbody.position, Target, 0.1f) - PlayerRigidbody.position;
+        Vector3 desiredVelocity = (Vector3.Lerp (PlayerRigidbody.position, Target, 0.1f) - PlayerRigidbody.position)/Time.deltaTime;
         PlayerRigidbody.velocity = desiredVelocity;
     }
     void SingleGrip (HandController device)
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         PlayerRigidbody.useGravity = false;
         Vector3 offset = device.transform.position - device.GripPosition;
         Vector3 Target = PlayerRigidbody.position - offset;
-        Vector3 desiredVelocity = Vector3.Lerp (PlayerRigidbody.position, Target, 0.1f) - PlayerRigidbody.position;
+        Vector3 desiredVelocity = (Vector3.Lerp (PlayerRigidbody.position, Target, 0.1f) - PlayerRigidbody.position) / Time.deltaTime;
         PlayerRigidbody.velocity = desiredVelocity;
     }
     void Fall ()

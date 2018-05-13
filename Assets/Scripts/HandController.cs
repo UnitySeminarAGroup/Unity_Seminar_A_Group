@@ -12,7 +12,7 @@ public class HandController : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSource;
     Rigidbody rb;
-    float GripTimer;
+    float GripTimer, RecoverColor;
     SteamVR_Controller.Device device;
     void Start ()
     {
@@ -60,9 +60,10 @@ public class HandController : MonoBehaviour
         if (GripTimer > 0)
         {
             GripTimer -= Time.deltaTime;
-            modelrend.material.color += new Color (0.01f, 0.01f, 0.01f, 0);
+            var colorOffset = RecoverColor * Time.deltaTime;
+            modelrend.material.color += new Color (colorOffset, colorOffset, colorOffset, 0);
         }
-        else if (!IsHandGripping)
+        else if (!IsHandGripping && !IsWalking)
         {
             GripTimer = 0;
             modelrend.material.color = Color.white;
@@ -74,8 +75,8 @@ public class HandController : MonoBehaviour
         if (other.gameObject.tag == "AddPoint")
         {
             int p = other.GetComponent<PointController> ().ScorePoint;
-            other.GetComponent<ParticleManager>().InitParticle();
-            Debug.Log(other.GetComponent<ParticleManager>());
+            other.GetComponent<ParticleManager> ().InitParticle ();
+            Debug.Log (other.GetComponent<ParticleManager> ());
             FindObjectOfType<UIController> ().score += p;
             Destroy (other.gameObject);
             audioSource.Play ();
@@ -99,15 +100,15 @@ public class HandController : MonoBehaviour
             if (IsPadTouched && collider.tag == "GripPoint")
             {
                 IsFootGripping = true;
-                //FootGripPosition = FootDevice.transform.position;
             }
         }
     }
-    public void HandRelease (float GripTime)
+    public void HandRelease (float RecoverTime)
     {
         IsTriggered = false;
         IsHandGripping = false;
-        GripTimer = GripTime;
+        GripTimer = RecoverTime;
+        RecoverColor = 1 / RecoverTime;
         animator.SetBool ("Trigger", false);
         modelrend.material.color = Color.black;
     }

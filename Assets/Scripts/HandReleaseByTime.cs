@@ -11,11 +11,11 @@ public class HandReleaseByTime : MonoBehaviour
     float Timer;
     bool HasGripped;
     Vector3 ModelLocalPosition;
-    void Start ()
+    void Start()
     {
         ModelLocalPosition = ModelTransform.localPosition;
     }
-    void Update ()
+    void Update()
     {
         if (handcontroller.IsHandGripping)
         {
@@ -25,14 +25,14 @@ public class HandReleaseByTime : MonoBehaviour
                 HasGripped = true;
             }
             Timer += Time.deltaTime;
-            ModelTransform.localPosition = ModelLocalPosition + (new Vector3 (Random.value, Random.value, Random.value).normalized * ShakeSize * TimeCurve.Evaluate (Timer));
-            if (TimeCurve.Evaluate (Timer) > 0)
+            ModelTransform.localPosition = ModelLocalPosition + (new Vector3(Random.value, Random.value, Random.value).normalized * ShakeSize * TimeCurve.Evaluate(Timer));
+            if (TimeCurve.Evaluate(Timer) > 0)
             {
-                handcontroller.HandShake ((ushort) (TimeCurve.Evaluate (Timer) * ShakePower));
+                handcontroller.HandShake((ushort)(TimeCurve.Evaluate(Timer) * ShakePower));
             }
             if (Timer > ReleaseTime)
             {
-                handcontroller.HandRelease (ResurrectionTime);
+                handcontroller.HandRelease(ResurrectionTime);
                 HasGripped = false;
             }
         }

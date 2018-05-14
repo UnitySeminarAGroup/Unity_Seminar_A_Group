@@ -17,6 +17,8 @@ public class FootController : MonoBehaviour
         if (other.gameObject.tag == "AddPoint")
         {
             int p = other.GetComponent<PointController>().ScorePoint;
+            other.GetComponent<ParticleManager>().InitParticle();
+            Debug.Log(other.GetComponent<ParticleManager>());
             FindObjectOfType<UIController>().score += p;
             Destroy(other.gameObject);
             audioSource.Play();

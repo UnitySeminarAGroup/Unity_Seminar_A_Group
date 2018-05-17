@@ -11,6 +11,10 @@ public class HighScoreManager : MonoBehaviour {
 
     void Awake()
     {
+        if (PlayerPrefsX.GetIntArray(RANKING_PREF_KEY).Length < 1)
+        {
+            PlayerPrefsX.SetIntArray("ranking", new int[10]);
+        }
         ranking = PlayerPrefsX.GetIntArray(RANKING_PREF_KEY);
     }
 

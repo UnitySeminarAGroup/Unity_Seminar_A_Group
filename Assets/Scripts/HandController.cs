@@ -80,7 +80,11 @@ public class HandController : MonoBehaviour
             int p = other.GetComponent<PointController>().ScorePoint;
             other.GetComponent<ParticleManager>().InitParticle();
             Debug.Log(other.GetComponent<ParticleManager>());
-            FindObjectOfType<UIController>().score += p;
+            var UIlist = FindObjectsOfType<UIController>();
+            foreach(UIController u in UIlist)
+            {
+                u.score += p;
+            }
             Destroy(other.gameObject);
             audioSource.Play();
         }

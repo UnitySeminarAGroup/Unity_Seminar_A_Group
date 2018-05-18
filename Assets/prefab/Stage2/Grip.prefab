@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33167533056933408}
   - component: {fileID: 65200026188416960}
   - component: {fileID: 23571153717680844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grip
   m_TagString: GripPoint
   m_Icon: {fileID: 0}

@@ -46,7 +46,7 @@ public class HandController : MonoBehaviour
         }
         if (IsPadTouched)
         {
-            Time.timeScale = 10;
+            //Time.timeScale = 10;
         }
         else
         {
